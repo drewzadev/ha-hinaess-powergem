@@ -1,0 +1,13 @@
+# /etc/systemd/system/ha-hinaess-powergem.service
+[Unit]
+Description=HinaEss Powergem MQTT Bridge
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/ha-hinaess-powergem/src/hinaess-powergem-monitor.py --mqtt --loop
+WorkingDirectory=/opt/ha-hinaess-powergem
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

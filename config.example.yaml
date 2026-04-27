@@ -1,0 +1,32 @@
+# HinaEss Powergem Monitor — configuration file
+#
+# Copy this file to config.yaml and edit to suit your setup.
+# CLI arguments override any value set here.
+# See README.md for full documentation.
+
+serial:
+  port: /dev/ttyUSB2        # RS485 adapter serial port
+  bms_count: 2               # Number of BMS units on the bus
+
+mqtt:
+  host: localhost            # MQTT broker hostname or IP
+  port: 1883                 # MQTT broker port
+  username:                  # MQTT username (omit or null for anonymous)
+  password:                  # MQTT password
+  discovery_prefix: homeassistant   # Home Assistant MQTT discovery prefix
+  base_topic: hinaess        # Root topic for state/availability messages
+
+intervals:
+  poll: 3.0                  # RS485 poll interval (seconds)
+  realtime: 20.0             # MQTT publish cadence for fast-changing sensors (seconds)
+  cell: 600.0                # MQTT publish cadence for cell voltages (seconds)
+
+homeassistant:
+  device_name: "HinaEss Powergem Max"    # Device name in HA (battery number appended)
+  device_manufacturer: "HinaEss"          # Manufacturer field in HA device registry
+  device_model: "Powergem Max"            # Model field in HA device registry
+  device_area: "Battery Room"             # Suggested area in HA
+
+# Sensor slugs to exclude from MQTT discovery and state payloads.
+# Example: ["temp_t3", "temp_t4", "temp_env"]
+exclude_sensors: []
